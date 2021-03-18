@@ -115,7 +115,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<List<VPN>> getVPNList() async {
-    final url = Uri.http('rimurubot.ml:8080', '/www.vpngate.net:443/api/iphone/');
+    final url = Uri.https('rimurubot.ml:8080', '/www.vpngate.net/api/iphone/');
     final res = await http.get(url);
     print('Status code: ${res.statusCode}');
     if (res.statusCode == 200) {
