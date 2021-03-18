@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:html' as html;
@@ -114,7 +115,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<List<VPN>> getVPNList() async {
-    final url = Uri.http('rimurubot.ml:8080', '/www.vpngate.net/api/iphone/');
+    var url;
+    if (kDebugMode) {
+      url = Uri.http('rimurubot.ml:8080', '/www.vpngate.net/api/iphone/');
+    } else {
+      url = Uri.https('rimurubot.ml:8080', '/www.vpngate.net/api/iphone/');
+    }
     final res = await http.get(url);
     print('Status code: ${res.statusCode}');
     if (res.statusCode == 200) {
